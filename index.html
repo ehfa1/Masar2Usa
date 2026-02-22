@@ -227,6 +227,71 @@
             .header-center { display: none; } 
             .form-row, .requirements-grid { grid-template-columns: 1fr; } 
         }
+/* --- MOBILE & RESPONSIVE REFINEMENTS --- */
+@media (max-width: 992px) { 
+    .services-grid, .requirements-grid { grid-template-columns: repeat(2, 1fr); } 
+    .about-founder-flex { flex-direction: column; align-items: center; } 
+    .founder-img { flex: 0 0 auto; width: 100%; max-width: 350px; } 
+}
+
+@media (max-width: 768px) {
+    header { height: 80px; padding: 0 3%; }
+    .logo img { height: 80px; } /* Smaller logo so it doesn't hit the nav */
+    
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 0.7rem; }
+    
+    section { padding: 80px 5%; }
+    .section-title { font-size: 2.2rem; margin-bottom: 40px; }
+}
+
+@media (max-width: 650px) { 
+    /* This makes the form fields stack vertically on phones */
+    .form-row, .requirements-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 15px;
+    } 
+    
+    .apply-container { padding: 30px 20px; }
+    
+    /* Hide the center nav on very small screens to prevent overlap */
+    .header-center { display: none; } 
+    
+    /* Ensure the phone number parts stack nicely */
+    .phone-input-container {
+        grid-template-columns: 80px 1fr;
+    }
+}
+/* Specific Mobile AR Fixes */
+@media (max-width: 768px) {
+    body.rtl header {
+        flex-direction: row-reverse; /* Flips logo and lang button positions */
+    }
+
+    body.rtl .nav-links {
+        padding-right: 0;
+        display: flex;
+        overflow-x: auto; /* Allows links to scroll horizontally if they are too wide */
+        white-space: nowrap;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+/* Keeps the form labels and inputs aligned in Arabic Mobile */
+body.rtl .phone-input-container {
+    direction: ltr; /* Keeps +966 on the left so the number reads correctly */
+    text-align: left;
+}
+
+body.rtl .file-label {
+    text-align: right; /* Ensures "Upload Video" label moves to the right */
+}
+
+@media (max-width: 650px) {
+    body.rtl .form-row {
+        grid-template-columns: 1fr !important; /* Forces single column on phones */
+    }
+}
     </style>
 </head>
 <body>
@@ -397,73 +462,73 @@
     </section>
 
     <section id="apply">
-        <div class="apply-container reveal">
-            <h2 class="section-title" style="font-size: 2.5rem;" data-en="Free Assessment" data-ar="تقديم استشارة مجانية">Free <span>Assessment</span></h2>
-            <form id="assessment-form" action="https://formspree.io/f/mwvnqzgw" method="POST" enctype="multipart/form-data">
-                
-                <div class="form-row">
-                    <input type="text" name="Full Name" placeholder="Full Name" data-placeholder-en="Full Name" data-placeholder-ar="الاسم الكامل" required>
-                    <input type="email" name="Email" placeholder="Email Address" data-placeholder-en="Email Address" data-placeholder-ar="البريد الإلكتروني" required>
-                </div>
+    <div class="apply-container reveal">
+        <h2 class="section-title" style="margin-bottom: 40px;">
+            <span data-en="FREE" data-ar="تقييم">FREE</span> 
+            <span data-en="ASSESSMENT" data-ar="مجاني" style="color: var(--gold);">ASSESSMENT</span>
+        </h2>
 
-                <div class="form-row">
-                    <div class="phone-input-container">
-                        <input type="text" name="Country Code" placeholder="+966" data-placeholder-en="+966" data-placeholder-ar="+966" required>
-                        <input type="tel" name="Phone" placeholder="Phone Number" data-placeholder-en="Phone Number" data-placeholder-ar="رقم الهاتف" required>
-                    </div>
-                    <select name="Country" required>
-                        <option value="" data-en="Select Country" data-ar="اختر الدولة">Select Country</option>
-                        <option value="Saudi Arabia">Saudi Arabia</option>
-                        <option value="UAE">UAE</option>
-                        <option value="Qatar">Qatar</option>
-                        <option value="Kuwait">Kuwait</option>
-                        <option value="Oman">Oman</option>
-                        <option value="Bahrain">Bahrain</option>
-                        <option value="Jordan">Jordan</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="USA">USA</option>
-                        <option value="Other">Other / International</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <select name="Sport" required>
-                        <option value="" data-en="Select Sport" data-ar="اختر الرياضة">Select Sport</option>
-                        <option data-en="Soccer" data-ar="كرة القدم">Soccer</option>
-                        <option data-en="Basketball" data-ar="كرة السلة">Basketball</option>
-                        <option data-en="Other" data-ar="أخرى">Other</option>
-                    </select>
-                    <input type="text" name="GPA" placeholder="GPA / Grade" data-placeholder-en="GPA / Grade" data-placeholder-ar="المعدل / الصف">
-                </div>
-
-                <textarea name="About" rows="4" placeholder="Tell us about you..." data-placeholder-en="Tell us about you..." data-placeholder-ar="أخبرنا عنك..."></textarea>
-                
-                <div class="file-upload-wrapper">
-                    <label class="file-label" data-en="Upload Highlight Video" data-ar="رفع فيديو المهارات">Upload Highlight Video</label>
-                    <input type="file" name="Highlight Video" accept="video/*">
-                </div>
-
-                <button type="submit" id="submit-btn" class="btn-action" style="width:100%;">
-                    <span id="btnText" data-en="Request Free Assessment" data-ar="طلب تقييم مجاني">Request Free Assessment</span>
-                    <div class="spinner" id="spinner"></div>
-                </button>
-            </form>
-
-            <div id="successMsg" style="display:none; text-align:center;">
-                <h3 style="color:var(--gold); font-size: 2rem;" data-en="SUCCESS!" data-ar="تم بنجاح!">SUCCESS!</h3>
-                <p data-en="Your profile has been sent. We will contact you for your assessment." data-ar="تم إرسال ملفك. سنتواصل معك بخصوص التقييم.">Your profile has been sent. We will contact you for your assessment.</p>
+        <form id="recruitmentForm">
+            <div class="form-row">
+                <input type="text" name="full_name" placeholder="Full Name" data-en-placeholder="Full Name" data-ar-placeholder="الاسم الكامل" required>
+                <input type="email" name="email" placeholder="Email Address" data-en-placeholder="Email Address" data-ar-placeholder="البريد الإلكتروني" required>
             </div>
-        </div>
-    </section>
 
+            <div class="form-row">
+                <div class="phone-input-container">
+                    <input type="text" name="country_code" value="" placeholder="+968">
+                    <input type="tel" name="phone" placeholder="Phone Number" data-en-placeholder="Phone Number" data-ar-placeholder="رقم الهاتف" required>
+                </div>
+                <select name="country" required>
+                    <option value="" disabled selected data-en="Select Country" data-ar="اختر الدولة">Select Country</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="UAE">UAE</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <select name="sport" required>
+                    <option value="" disabled selected data-en="Select Sport" data-ar="اختر الرياضة">Select Sport</option>
+                    <option value="Soccer">Soccer</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Tennis">Tennis</option>
+                </select>
+                <input type="text" name="gpa" placeholder="GPA / Grade" data-en-placeholder="GPA / Grade" data-ar-placeholder="المعدل / الصف">
+            </div>
+
+            <textarea name="message" rows="4" placeholder="Tell us about you..." data-en-placeholder="Tell us about you..." data-ar-placeholder="حدثنا عن نفسك..."></textarea>
+
+            <div class="file-upload-wrapper" style="margin-top: 20px;">
+                <label class="file-label" style="display: block; text-align: left; margin-bottom: 10px;">
+                    <span data-en="UPLOAD HIGHLIGHT VIDEO" data-ar="ارفع فيديو المهارات">UPLOAD HIGHLIGHT VIDEO</span>
+                </label>
+                <input type="file" name="highlight_video" style="padding: 10px;">
+            </div>
+
+            <button type="submit" class="btn-action" id="submitBtn" style="width: 100%; margin-top: 20px;">
+                <span class="btn-text" data-en="REQUEST FREE ASSESSMENT" data-ar="طلب تقييم مجاني">REQUEST FREE ASSESSMENT</span>
+                <div class="spinner" id="loader"></div>
+            </button>
+            
+            <div id="successMsg" style="display:none; color: var(--gold); margin-top: 20px; font-weight: 600; text-align: center;"></div>
+        </form>
+    </div>
+</section>
     <footer class="elite-footer">
-        <div class="footer-logo"><img src="logo.png" alt="Masar2USA Footer Logo"></div>
-        <div class="footer-socials">
-            <a href="https://www.instagram.com/masar2usa/" target="_blank" class="footer-social-link">INSTAGRAM</a>
-            <a href="https://wa.link/jdyxvn" target="_blank" class="footer-social-link">WHATSAPP</a>
-            <a href="mailto:INFO@MASAR2USA.COM" class="footer-social-link">EMAIL</a>
+        <div class="footer-logo">
+            <img src="logo.png" alt="Masar2USA Logo">
         </div>
-        <div class="footer-copyright">© 2026 <span>MASAR2USA</span>. ALL RIGHTS RESERVED.</div>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/masar2usa/" class="footer-social-link">INSTAGRAM</a>
+            <a href="https://wa.link/jdyxvn" class="footer-social-link">WHATSAPP</a>
+            <a href="mailto:INFO@MASAR2USA.COM" class="footer-social-link">EMAIL US</a>
+        </div>
+        <p class="footer-copyright">
+            &copy; 2026 <span>MASAR2USA</span>. ALL RIGHTS RESERVED. 
+            <br><small>Crafting Futures, One Athlete at a Time.</small>
+        </p>
     </footer>
 
     <script>
@@ -539,6 +604,67 @@
             slides[currentSlide].classList.add('active');
         }, 5000);
     </script>
+<script>
+    // 1. SCROLL PROGRESS & REVEAL ANIMATION
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
 
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    });
+
+    // 2. HERO SLIDER LOGIC
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000);
+
+    // 3. LANGUAGE TOGGLE (EN/AR)
+    let currentLang = 'en';
+    function toggleLanguage() {
+        currentLang = currentLang === 'en' ? 'ar' : 'en';
+        document.body.classList.toggle('rtl');
+        document.getElementById('langBtn').innerText = currentLang === 'en' ? 'AR' : 'EN';
+
+        // Update Text Content
+        document.querySelectorAll('[data-en]').forEach(el => {
+            el.innerText = el.getAttribute(`data-${currentLang}`);
+        });
+
+        // Update Placeholders
+        document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+            el.placeholder = el.getAttribute(`data-${currentLang}-placeholder`);
+        });
+    }
+
+    // 4. FORM SUBMISSION (MOCKUP)
+    document.getElementById('recruitmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btnText = document.querySelector('.btn-text');
+        const loader = document.getElementById('loader');
+        const success = document.getElementById('successMsg');
+
+        btnText.style.display = 'none';
+        loader.style.display = 'inline-block';
+
+        setTimeout(() => {
+            loader.style.display = 'none';
+            success.style.display = 'block';
+            success.innerText = currentLang === 'en' ? 'Thank you! We will contact you soon.' : 'شكراً لك! سنتواصل معك قريباً.';
+            this.reset();
+        }, 2000);
+    });
+</script>
 </body>
 </html>
