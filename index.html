@@ -359,6 +359,58 @@
         text-align: left !important;
     }
 }
+/* --- STABLE LIST FIX FOR MOBILE --- */
+@media (max-width: 992px) {
+    /* Reset the list container */
+    ul.about-list {
+        display: block !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 20px 0 !important;
+    }
+
+    /* Reset the list items */
+    ul.about-list li {
+        display: block !important; /* Forces standard text behavior */
+        position: relative !important;
+        margin-bottom: 15px !important;
+        line-height: 1.6 !important;
+        white-space: normal !important;
+    }
+
+    /* English Layout */
+    body:not(.rtl) ul.about-list li {
+        padding-left: 30px !important; /* Makes a "lane" for the tick */
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+
+    /* Arabic Layout */
+    body.rtl ul.about-list li {
+        padding-right: 30px !important; /* Makes a "lane" for the tick on the right */
+        padding-left: 0 !important;
+        text-align: right !important;
+    }
+
+    /* Position the Checkmark absolutely so it never touches the text */
+    ul.about-list li::before {
+        content: '✓' !important;
+        position: absolute !important;
+        color: var(--gold) !important;
+        font-weight: bold !important;
+        top: 0 !important;
+    }
+
+    /* English: Tick on the left */
+    body:not(.rtl) ul.about-list li::before {
+        left: 0 !important;
+    }
+
+    /* Arabic: Tick on the right */
+    body.rtl ul.about-list li::before {
+        right: 0 !important;
+    }
+}
     </style>
 
     </style>
