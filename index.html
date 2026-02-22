@@ -221,26 +221,40 @@
         /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 992px) { 
             .services-grid, .requirements-grid { grid-template-columns: repeat(2, 1fr); } 
-            .about-founder-flex { flex-direction: column; align-items: center; } 
-            .founder-img { flex: 0 0 auto; width: 80%; } 
-            /* Fix for RTL Founder Text Block invisibility on mobile */
-            body.rtl .founder-text { width: 100%; display: block !important; text-align: right !important; }
+            
+            /* This fixes the Founder Section layout */
+            .about-founder-flex { 
+                display: flex !important;
+                flex-direction: column !important; 
+                align-items: center !important; 
+            } 
+
+            .founder-img { 
+                flex: 0 0 auto; 
+                width: 100%; 
+                max-width: 350px;
+                margin-bottom: 30px;
+            } 
+
+            /* This forces the Arabic text to appear below the image */
+            body.rtl .founder-text { 
+                width: 100% !important; 
+                display: block !important; 
+                text-align: right !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .founder-text {
+                width: 100%;
+                text-align: center;
+            }
         }
 
-        @media (max-width: 768px) {
-            header { padding: 0 3%; }
-            .logo img { height: 90px; }
-            section { padding: 80px 5%; }
-            .section-title { font-size: 2.2rem; }
-        }
-
-        @media (max-width: 650px) { 
-            .header-center { display: none; } 
-            .form-row, .requirements-grid { grid-template-columns: 1fr !important; } 
-            .phone-input-container { grid-template-columns: 80px 1fr; }
-            .apply-container { padding: 30px 20px; }
-            /* Fix RTL Header on Mobile */
-            body.rtl header { flex-direction: row-reverse; }
+        @media (max-width: 650px) {
+            /* Ensures the text stays visible on very small screens */
+            .founder-text h2 { font-size: 1.8rem !important; }
+            .form-row, .requirements-grid { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
