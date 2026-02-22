@@ -342,6 +342,23 @@
         left: 15px;
     }
 }
+/* --- FIX FOUNDER TEXT ALIGNMENT FOR ENGLISH MOBILE --- */
+@media (max-width: 992px) {
+    /* Target the text only when the 'rtl' class is NOT present on the body */
+    body:not(.rtl) .founder-text {
+        text-align: left !important;
+    }
+
+    body:not(.rtl) .about-list li {
+        text-align: left !important;
+        justify-content: flex-start !important;
+    }
+    
+    /* Optional: If you want the "Message from the Founder" title left-aligned too */
+    body:not(.rtl) .founder-text .section-title {
+        text-align: left !important;
+    }
+}
     </style>
 </head>
 <body>
