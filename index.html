@@ -582,48 +582,58 @@
         </div>
     </section>
 
-    <section id="apply">
-        <h2 class="section-title reveal" data-en="Apply for Free Assessment" data-ar="تقديم استمارة تقييم مجانية">Apply for <span>Free Assessment</span></h2>
-        <div class="apply-container reveal">
-            <form id="assessmentForm">
-                <div class="form-row">
-                    <input type="text" name="first_name" placeholder="First Name" data-en="First Name" data-ar="الاسم الأول" required>
-                    <input type="text" name="last_name" placeholder="Last Name" data-en="Last Name" data-ar="اسم العائلة" required>
+<section id="apply">
+    <h2 class="section-title reveal" data-en="Apply for Free Assessment" data-ar="تقديم استمارة تقييم مجانية">Apply for <span>Free Assessment</span></h2>
+    <div class="apply-container reveal">
+        <form id="assessmentForm" action="https://formspree.io/f/xjgeanwe" method="POST">
+            <div class="form-row">
+                <input type="text" name="first_name" placeholder="First Name" data-en-ph="First Name" data-ar-ph="الاسم الأول" required>
+                <input type="text" name="last_name" placeholder="Last Name" data-en-ph="Last Name" data-ar-ph="اسم العائلة" required>
+            </div>
+            <div class="form-row">
+                <input type="email" name="email" placeholder="Email Address" data-en-ph="Email Address" data-ar-ph="البريد الإلكتروني" required>
+                <div class="phone-input-container">
+                    <input type="text" name="country_code" placeholder="+968" value="" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" data-en-ph="Phone Number" data-ar-ph="رقم الجوال" required>
                 </div>
-                <div class="form-row">
-                    <input type="email" name="email" placeholder="Email Address" data-en="Email Address" data-ar="البريد الإلكتروني" required>
-                    <div class="phone-input-container">
-                        <input type="text" name="country_code" placeholder="+968" value="" required>
-                        <input type="tel" name="phone" placeholder="Phone Number" data-en="Phone Number" data-ar="رقم الجوال" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <select name="sport" required>
-                        <option value="" disabled selected data-en="Select Your Sport" data-ar="اختر رياضتك">Select Your Sport</option>
-                        <option value="soccer">Soccer</option>
-                        <option value="basketball">Basketball</option>
-                        <option value="tennis">Tennis</option>
-                        <option value="volleyball">Volleyball</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="text" name="location" placeholder="City/Country" data-en="City/Country" data-ar="المدينة / الدولة" required>
-                </div>
-                <div class="file-upload-wrapper">
-                    <label class="file-label" data-en="Upload Highlight Video (Optional)" data-ar="رفع فيديو المهارات (اختياري)">Upload Highlight Video (Optional)</label>
-                    <input type="file" name="video_file" accept="video/*">
-                </div>
-                <textarea name="message" rows="5" placeholder="Tell us about you..." data-en="Tell us about you" data-ar="حدثنا عنك..."></textarea>
-                <div style="margin-top: 30px; text-align: center;">
-                    <button type="submit" class="btn-action" style="width: 100%;">
-                        <span class="btn-text" data-en="Submit Application" data-ar="إرسال الطلب">Submit Application</span>
-                        <div class="spinner"></div>
-                    </button>
-                </div>
-            </form>
-            <div id="successMsg" style="display:none; text-align:center; color: var(--gold); margin-top:20px; font-weight:700;" data-en="Thank you! We will contact you soon." data-ar="شكراً لك! سنتواصل معك قريباً.">Thank you! We will contact you soon.</div>
-        </div>
-    </section>
+            </div>
+            <div class="form-row">
+                <select name="sport" required id="sportSelect">
+                    <option value="" disabled selected data-en="Select Your Sport" data-ar="اختر رياضتك">Select Your Sport</option>
+                    <option value="soccer">Soccer</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="tennis">Tennis</option>
+                    <option value="volleyball">Volleyball</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="location" placeholder="City/Country" data-en-ph="City/Country" data-ar-ph="المدينة / الدولة" required>
+            </div>
+            <div class="file-upload-wrapper">
+                <label class="file-label" data-en="Upload Highlight Video (Optional)" data-ar="رفع فيديو المهارات (اختياري)">Upload Highlight Video (Optional)</label>
+                <input type="file" name="video_file" accept="video/*">
+            </div>
+            <textarea name="message" rows="5" placeholder="Tell us about you..." data-en-ph="Tell us about you..." data-ar-ph="حدثنا عنك..."></textarea>
+            <div style="margin-top: 30px; text-align: center;">
+                <button type="submit" class="btn-action" style="width: 100%;" id="submitBtn">
+                    <span class="btn-text" data-en="Submit Application" data-ar="إرسال الطلب">Submit Application</span>
+                    <div class="spinner" id="formSpinner" style="display:none; margin: 0 auto;"></div>
+                </button>
+            </div>
+        </form>
 
+        <div id="successMsg" style="display:none; text-align:center !important; padding: 40px 20px; width: 100%;">
+    <h3 style="color: var(--gold); font-family: 'Oswald', 'Cairo'; font-size: 2.5rem; margin-bottom: 15px; text-align: center !important;" 
+        data-en="APPLICATION SENT!" 
+        data-ar="تم إرسال الطلب !">
+        APPLICATION SENT!
+    </h3>
+    <p style="text-align: center !important; margin: 0 auto !important; display: block !important;" 
+       data-en="Thank you. Our team will contact you soon." 
+       data-ar="شكراً لك. سيتواصل معك فريقنا قريباً.">
+       Thank you. Our team will contact you soon.
+    </p>
+</div>
+</section>
     <footer class="elite-footer">
         <div class="footer-logo"><img src="logo.png" alt="Masar2USA Logo"></div>
         <div class="footer-socials">
@@ -634,44 +644,90 @@
         <p class="footer-copyright">© 2026 <span>Masar2USA</span>. All rights reserved.</p>
     </footer>
 
-    <script>
-        function toggleLanguage() {
-            const body = document.body;
-            const btn = document.getElementById('langBtn');
-            const isAr = body.classList.toggle('rtl');
-            btn.innerText = isAr ? 'EN' : 'AR';
-            document.querySelectorAll('[data-en]').forEach(el => {
-                el.innerText = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-                }
-            });
+   <script>
+    // --- 1. LANGUAGE SWITCHER ---
+    function toggleLanguage() {
+        const body = document.body;
+        const langBtn = document.getElementById('langBtn');
+        const isEn = !body.classList.contains('rtl');
+
+        if (isEn) {
+            body.classList.add('rtl');
+            langBtn.innerText = 'EN';
+            updateContent('ar');
+        } else {
+            body.classList.remove('rtl');
+            langBtn.innerText = 'AR';
+            updateContent('en');
         }
+    }
 
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+    function updateContent(lang) {
+        // Update standard text
+        document.querySelectorAll('[data-en]').forEach(el => {
+            el.innerText = el.getAttribute(`data-${lang}`);
+        });
+
+        // Update form placeholders (The Fix)
+        document.querySelectorAll('[data-ar-ph]').forEach(input => {
+            input.placeholder = input.getAttribute(`data-${lang}-ph`);
+        });
+    }
+
+    // --- 2. FORM SUBMISSION (STAY ON PAGE) ---
+    const form = document.getElementById('assessmentForm');
+    const successMsg = document.getElementById('successMsg');
+    const formSpinner = document.getElementById('formSpinner');
+    const btnText = document.querySelector('.btn-text');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // UI Feedback
+        btnText.style.display = 'none';
+        formSpinner.style.display = 'block';
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
             });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
+            if (response.ok) {
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+            } else {
+                alert("Error sending. Please try again.");
+                btnText.style.display = 'block';
+                formSpinner.style.display = 'none';
+            }
+        } catch (err) {
+            alert("Connection error.");
+            btnText.style.display = 'block';
+            formSpinner.style.display = 'none';
+        }
+    });
 
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-    </script>
+    // --- 3. REVEAL ANIMATION ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- 4. HERO SLIDESHOW ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+</script>
 </body>
 </html>
