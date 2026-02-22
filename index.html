@@ -359,6 +359,23 @@
         text-align: left !important;
     }
 }
+/* --- FIXING THE CHECKMARK LIST ALIGNMENT FOR ENGLISH --- */
+@media (max-width: 992px) {
+    /* Target the list items only when NOT in Arabic mode */
+    body:not(.rtl) .about-list li {
+        text-align: left !important;
+        justify-content: flex-start !important; /* Moves the checkmark to the left */
+        display: flex !important;
+        align-items: flex-start !important; /* Keeps checkmark aligned with top of text */
+    }
+
+    /* Ensure the bullet points/ticks don't have weird centering margins */
+    body:not(.rtl) .about-list {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        display: block !important;
+    }
+}
     </style>
 </head>
 <body>
