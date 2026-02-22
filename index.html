@@ -218,80 +218,30 @@
         }
         .footer-copyright span { color: var(--gold); }
 
+        /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 992px) { 
             .services-grid, .requirements-grid { grid-template-columns: repeat(2, 1fr); } 
             .about-founder-flex { flex-direction: column; align-items: center; } 
             .founder-img { flex: 0 0 auto; width: 80%; } 
+            /* Fix for RTL Founder Text Block invisibility on mobile */
+            body.rtl .founder-text { width: 100%; display: block !important; text-align: right !important; }
         }
+
+        @media (max-width: 768px) {
+            header { padding: 0 3%; }
+            .logo img { height: 90px; }
+            section { padding: 80px 5%; }
+            .section-title { font-size: 2.2rem; }
+        }
+
         @media (max-width: 650px) { 
             .header-center { display: none; } 
-            .form-row, .requirements-grid { grid-template-columns: 1fr; } 
+            .form-row, .requirements-grid { grid-template-columns: 1fr !important; } 
+            .phone-input-container { grid-template-columns: 80px 1fr; }
+            .apply-container { padding: 30px 20px; }
+            /* Fix RTL Header on Mobile */
+            body.rtl header { flex-direction: row-reverse; }
         }
-/* --- MOBILE & RESPONSIVE REFINEMENTS --- */
-@media (max-width: 992px) { 
-    .services-grid, .requirements-grid { grid-template-columns: repeat(2, 1fr); } 
-    .about-founder-flex { flex-direction: column; align-items: center; } 
-    .founder-img { flex: 0 0 auto; width: 100%; max-width: 350px; } 
-}
-
-@media (max-width: 768px) {
-    header { height: 80px; padding: 0 3%; }
-    .logo img { height: 80px; } /* Smaller logo so it doesn't hit the nav */
-    
-    .nav-links { gap: 15px; }
-    .nav-links a { font-size: 0.7rem; }
-    
-    section { padding: 80px 5%; }
-    .section-title { font-size: 2.2rem; margin-bottom: 40px; }
-}
-
-@media (max-width: 650px) { 
-    /* This makes the form fields stack vertically on phones */
-    .form-row, .requirements-grid { 
-        grid-template-columns: 1fr !important; 
-        gap: 15px;
-    } 
-    
-    .apply-container { padding: 30px 20px; }
-    
-    /* Hide the center nav on very small screens to prevent overlap */
-    .header-center { display: none; } 
-    
-    /* Ensure the phone number parts stack nicely */
-    .phone-input-container {
-        grid-template-columns: 80px 1fr;
-    }
-}
-/* Specific Mobile AR Fixes */
-@media (max-width: 768px) {
-    body.rtl header {
-        flex-direction: row-reverse; /* Flips logo and lang button positions */
-    }
-
-    body.rtl .nav-links {
-        padding-right: 0;
-        display: flex;
-        overflow-x: auto; /* Allows links to scroll horizontally if they are too wide */
-        white-space: nowrap;
-        width: 100%;
-        justify-content: flex-start;
-    }
-}
-/* Keeps the form labels and inputs aligned in Arabic Mobile */
-body.rtl .phone-input-container {
-    direction: ltr; /* Keeps +966 on the left so the number reads correctly */
-    text-align: left;
-}
-
-body.rtl .file-label {
-    text-align: right; /* Ensures "Upload Video" label moves to the right */
-}
-
-@media (max-width: 650px) {
-    body.rtl .form-row {
-        grid-template-columns: 1fr !important; /* Forces single column on phones */
-    }
-}
     </style>
 </head>
 <body>
@@ -462,209 +412,95 @@ body.rtl .file-label {
     </section>
 
     <section id="apply">
-    <div class="apply-container reveal">
-        <h2 class="section-title" style="margin-bottom: 40px;">
-            <span data-en="FREE" data-ar="تقييم">FREE</span> 
-            <span data-en="ASSESSMENT" data-ar="مجاني" style="color: var(--gold);">ASSESSMENT</span>
-        </h2>
-
-        <form id="recruitmentForm">
-            <div class="form-row">
-                <input type="text" name="full_name" placeholder="Full Name" data-en-placeholder="Full Name" data-ar-placeholder="الاسم الكامل" required>
-                <input type="email" name="email" placeholder="Email Address" data-en-placeholder="Email Address" data-ar-placeholder="البريد الإلكتروني" required>
-            </div>
-
-            <div class="form-row">
-                <div class="phone-input-container">
-                    <input type="text" name="country_code" value="" placeholder="+968">
-                    <input type="tel" name="phone" placeholder="Phone Number" data-en-placeholder="Phone Number" data-ar-placeholder="رقم الهاتف" required>
+        <h2 class="section-title reveal" data-en="Apply for Free Assessment" data-ar="تقديم استمارة تقييم مجانية">Apply for <span>Free Assessment</span></h2>
+        <div class="apply-container reveal">
+            <form id="assessmentForm">
+                <div class="form-row">
+                    <input type="text" name="first_name" placeholder="First Name" data-en="First Name" data-ar="الاسم الأول" required>
+                    <input type="text" name="last_name" placeholder="Last Name" data-en="Last Name" data-ar="اسم العائلة" required>
                 </div>
-                <select name="country" required>
-                    <option value="" disabled selected data-en="Select Country" data-ar="اختر الدولة">Select Country</option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="UAE">UAE</option>
-                    <option value="Oman">Oman</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div class="form-row">
-                <select name="sport" required>
-                    <option value="" disabled selected data-en="Select Sport" data-ar="اختر الرياضة">Select Sport</option>
-                    <option value="Soccer">Soccer</option>
-                    <option value="Basketball">Basketball</option>
-                    <option value="Tennis">Tennis</option>
-                </select>
-                <input type="text" name="gpa" placeholder="GPA / Grade" data-en-placeholder="GPA / Grade" data-ar-placeholder="المعدل / الصف">
-            </div>
-
-            <textarea name="message" rows="4" placeholder="Tell us about you..." data-en-placeholder="Tell us about you..." data-ar-placeholder="حدثنا عن نفسك..."></textarea>
-
-            <div class="file-upload-wrapper" style="margin-top: 20px;">
-                <label class="file-label" style="display: block; text-align: left; margin-bottom: 10px;">
-                    <span data-en="UPLOAD HIGHLIGHT VIDEO" data-ar="ارفع فيديو المهارات">UPLOAD HIGHLIGHT VIDEO</span>
-                </label>
-                <input type="file" name="highlight_video" style="padding: 10px;">
-            </div>
-
-            <button type="submit" class="btn-action" id="submitBtn" style="width: 100%; margin-top: 20px;">
-                <span class="btn-text" data-en="REQUEST FREE ASSESSMENT" data-ar="طلب تقييم مجاني">REQUEST FREE ASSESSMENT</span>
-                <div class="spinner" id="loader"></div>
-            </button>
-            
-            <div id="successMsg" style="display:none; color: var(--gold); margin-top: 20px; font-weight: 600; text-align: center;"></div>
-        </form>
-    </div>
-</section>
-    <footer class="elite-footer">
-        <div class="footer-logo">
-            <img src="logo.png" alt="Masar2USA Logo">
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Email Address" data-en="Email Address" data-ar="البريد الإلكتروني" required>
+                    <div class="phone-input-container">
+                        <input type="text" name="country_code" placeholder="+968" value="" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" data-en="Phone Number" data-ar="رقم الجوال" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <select name="sport" required>
+                        <option value="" disabled selected data-en="Select Your Sport" data-ar="اختر رياضتك">Select Your Sport</option>
+                        <option value="soccer">Soccer</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="volleyball">Volleyball</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="location" placeholder="City/Country" data-en="City/Country" data-ar="المدينة / الدولة" required>
+                </div>
+                <div class="file-upload-wrapper">
+                    <label class="file-label" data-en="Upload Highlight Video (Optional)" data-ar="رفع فيديو المهارات (اختياري)">Upload Highlight Video (Optional)</label>
+                    <input type="file" name="video_file" accept="video/*">
+                </div>
+                <textarea name="message" rows="5" placeholder="Tell us about you..." data-en="Tell us about you" data-ar="حدثنا عنك..."></textarea>
+                <div style="margin-top: 30px; text-align: center;">
+                    <button type="submit" class="btn-action" style="width: 100%;">
+                        <span class="btn-text" data-en="Submit Application" data-ar="إرسال الطلب">Submit Application</span>
+                        <div class="spinner"></div>
+                    </button>
+                </div>
+            </form>
+            <div id="successMsg" style="display:none; text-align:center; color: var(--gold); margin-top:20px; font-weight:700;" data-en="Thank you! We will contact you soon." data-ar="شكراً لك! سنتواصل معك قريباً.">Thank you! We will contact you soon.</div>
         </div>
+    </section>
+
+    <footer class="elite-footer">
+        <div class="footer-logo"><img src="logo.png" alt="Masar2USA Logo"></div>
         <div class="footer-socials">
             <a href="https://www.instagram.com/masar2usa/" class="footer-social-link">INSTAGRAM</a>
+            <a href="mailto:INFO@MASAR2USA.COM" class="footer-social-link">EMAIL</a>
             <a href="https://wa.link/jdyxvn" class="footer-social-link">WHATSAPP</a>
-            <a href="mailto:INFO@MASAR2USA.COM" class="footer-social-link">EMAIL US</a>
         </div>
-        <p class="footer-copyright">
-            &copy; 2026 <span>MASAR2USA</span>. ALL RIGHTS RESERVED. 
-            <br><small>Crafting Futures, One Athlete at a Time.</small>
-        </p>
+        <p class="footer-copyright">© 2024 <span>Masar2USA</span>. All rights reserved.</p>
     </footer>
 
     <script>
-        // Language Toggle Logic
-        let currentLang = 'en';
         function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            document.body.classList.toggle('rtl', currentLang === 'ar');
-            document.getElementById('langBtn').innerText = currentLang === 'en' ? 'AR' : 'EN';
-            
+            const body = document.body;
+            const btn = document.getElementById('langBtn');
+            const isAr = body.classList.toggle('rtl');
+            btn.innerText = isAr ? 'EN' : 'AR';
             document.querySelectorAll('[data-en]').forEach(el => {
-                const text = el.getAttribute(`data-${currentLang}`);
-                if (text) el.innerText = text;
-            });
-
-            document.querySelectorAll('[data-placeholder-en]').forEach(el => {
-                const placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
-                if (placeholder) el.placeholder = placeholder;
-            });
-        }
-
-        // Improved Reveal Logic
-        function reveal() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                let windowHeight = window.innerHeight;
-                let elementTop = el.getBoundingClientRect().top;
-                let elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible || elementTop < 0) {
-                    el.classList.add('active');
+                el.innerText = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
                 }
             });
         }
 
-        // Scroll Progress & Reveal Trigger
-        window.onscroll = () => {
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
-            reveal();
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
         };
 
-        // Initialize on Load
-        window.onload = () => {
-            reveal(); // Trigger reveal immediately so above-the-fold text shows
-        };
-
-        // Form Handling
-        const form = document.getElementById('assessment-form');
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            document.getElementById('btnText').style.display = 'none';
-            document.getElementById('spinner').style.display = 'block';
-            
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                form.style.display = 'none';
-                document.getElementById('successMsg').style.display = 'block';
-            }
-        };
-
-        // Hero Slide Shuffle
-        let slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
         setInterval(() => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }, 5000);
     </script>
-<script>
-    // 1. SCROLL PROGRESS & REVEAL ANIMATION
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById("scroll-progress").style.width = scrolled + "%";
-
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                el.classList.add('active');
-            }
-        });
-    });
-
-    // 2. HERO SLIDER LOGIC
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
-    setInterval(nextSlide, 5000);
-
-    // 3. LANGUAGE TOGGLE (EN/AR)
-    let currentLang = 'en';
-    function toggleLanguage() {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        document.body.classList.toggle('rtl');
-        document.getElementById('langBtn').innerText = currentLang === 'en' ? 'AR' : 'EN';
-
-        // Update Text Content
-        document.querySelectorAll('[data-en]').forEach(el => {
-            el.innerText = el.getAttribute(`data-${currentLang}`);
-        });
-
-        // Update Placeholders
-        document.querySelectorAll('[data-en-placeholder]').forEach(el => {
-            el.placeholder = el.getAttribute(`data-${currentLang}-placeholder`);
-        });
-    }
-
-    // 4. FORM SUBMISSION (MOCKUP)
-    document.getElementById('recruitmentForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btnText = document.querySelector('.btn-text');
-        const loader = document.getElementById('loader');
-        const success = document.getElementById('successMsg');
-
-        btnText.style.display = 'none';
-        loader.style.display = 'inline-block';
-
-        setTimeout(() => {
-            loader.style.display = 'none';
-            success.style.display = 'block';
-            success.innerText = currentLang === 'en' ? 'Thank you! We will contact you soon.' : 'شكراً لك! سنتواصل معك قريباً.';
-            this.reset();
-        }, 2000);
-    });
-</script>
 </body>
 </html>
