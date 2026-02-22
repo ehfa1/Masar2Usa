@@ -294,43 +294,52 @@
         margin-bottom: 20px;
     }
 }
-/* --- HEADER COMPACT FIX FOR MOBILE --- */
+/* --- SCROLLABLE HEADER FOR MOBILE --- */
 @media (max-width: 992px) {
     header {
-        padding: 0 2% !important; /* Reduces side padding to save space */
-        justify-content: space-between !important;
+        flex-direction: column !important; /* Stack logo above the menu */
+        height: auto !important;
+        padding: 10px 0 !important;
     }
 
-    .header-left, .header-right { 
-        flex: 0 1 auto !important; /* Prevents side sections from hogging space */
+    .header-center {
+        width: 100%;
+        overflow-x: auto; /* Allows swiping left/right */
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; /* Smooth swiping on iPhone */
+        padding: 10px 20px;
+        border-top: 1px solid #222; /* Separates logo from links */
+    }
+
+    /* Hide the scrollbar but keep it scrollable */
+    .header-center::-webkit-scrollbar {
+        display: none;
     }
 
     .nav-links {
-        gap: 10px !important; /* Tightens the gap between Home, About, etc. */
+        display: inline-flex !important;
+        gap: 25px !important; /* Keep a comfortable gap */
+        padding-right: 20px;
     }
 
     .nav-links a {
-        font-size: 0.65rem !important; /* Makes text smaller to fit the screen */
-        white-space: nowrap; /* Prevents links from breaking into two lines */
+        font-size: 0.85rem !important; /* Keep it readable/big */
     }
 
     .logo img {
-        height: 60px !important; /* Shrinks logo so it doesn't crowd the links */
+        height: 70px !important; /* Decent size logo */
+        margin-bottom: 5px;
     }
 
-    .lang-switch {
-        padding: 4px 8px !important; /* Smaller AR button */
-        font-size: 0.7rem !important;
+    .header-right {
+        position: absolute;
+        top: 20px;
+        right: 15px;
     }
-}
-
-/* Extra squeeze for very small phones */
-@media (max-width: 480px) {
-    .nav-links {
-        gap: 6px !important;
-    }
-    .nav-links a {
-        font-size: 0.55rem !important;
+    
+    body.rtl .header-right {
+        right: auto;
+        left: 15px;
     }
 }
     </style>
