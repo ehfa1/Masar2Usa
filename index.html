@@ -294,6 +294,45 @@
         margin-bottom: 20px;
     }
 }
+/* --- HEADER COMPACT FIX FOR MOBILE --- */
+@media (max-width: 992px) {
+    header {
+        padding: 0 2% !important; /* Reduces side padding to save space */
+        justify-content: space-between !important;
+    }
+
+    .header-left, .header-right { 
+        flex: 0 1 auto !important; /* Prevents side sections from hogging space */
+    }
+
+    .nav-links {
+        gap: 10px !important; /* Tightens the gap between Home, About, etc. */
+    }
+
+    .nav-links a {
+        font-size: 0.65rem !important; /* Makes text smaller to fit the screen */
+        white-space: nowrap; /* Prevents links from breaking into two lines */
+    }
+
+    .logo img {
+        height: 60px !important; /* Shrinks logo so it doesn't crowd the links */
+    }
+
+    .lang-switch {
+        padding: 4px 8px !important; /* Smaller AR button */
+        font-size: 0.7rem !important;
+    }
+}
+
+/* Extra squeeze for very small phones */
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 6px !important;
+    }
+    .nav-links a {
+        font-size: 0.55rem !important;
+    }
+}
     </style>
 </head>
 <body>
